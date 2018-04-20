@@ -10,91 +10,108 @@ import zipkin2.Endpoint;
 import zipkin2.Span;
 import zipkin2.reporter.Reporter;
 
-/** Spring XML config does not support chained builders. This converts accordingly */
+/**
+ * Spring XML config does not support chained builders. This converts
+ * accordingly
+ */
 public class TracingFactoryBean extends AbstractFactoryBean {
 
-  String localServiceName;
-  Endpoint localEndpoint, endpoint;
-  Reporter<Span> spanReporter;
-  Clock clock;
-  Sampler sampler;
-  CurrentTraceContext currentTraceContext;
-  Propagation.Factory propagationFactory;
-  Boolean traceId128Bit;
-  Boolean supportsJoin;
+	String localServiceName;
+	Endpoint localEndpoint, endpoint;
+	Reporter<Span> spanReporter;
+	Clock clock;
+	Sampler sampler;
+	CurrentTraceContext currentTraceContext;
+	Propagation.Factory propagationFactory;
+	Boolean traceId128Bit;
+	Boolean supportsJoin;
 
-  @Override protected Tracing createInstance() throws Exception {
-    Tracing.Builder builder = Tracing.newBuilder();
-    if (localServiceName != null) builder.localServiceName(localServiceName);
-    if (localEndpoint != null) builder.endpoint(localEndpoint);
-    if (endpoint != null) builder.endpoint(endpoint);
-    if (spanReporter != null) builder.spanReporter(spanReporter);
-    if (clock != null) builder.clock(clock);
-    if (sampler != null) builder.sampler(sampler);
-    if (currentTraceContext != null) builder.currentTraceContext(currentTraceContext);
-    if (propagationFactory != null) builder.propagationFactory(propagationFactory);
-    if (traceId128Bit != null) builder.traceId128Bit(traceId128Bit);
-    if (supportsJoin != null) builder.supportsJoin(supportsJoin);
-    return builder.build();
-  }
+	@Override
+	protected Tracing createInstance() throws Exception {
+		Tracing.Builder builder = Tracing.newBuilder();
+		if (localServiceName != null)
+			builder.localServiceName(localServiceName);
+		if (localEndpoint != null)
+			builder.endpoint(localEndpoint);
+		if (endpoint != null)
+			builder.endpoint(endpoint);
+		if (spanReporter != null)
+			builder.spanReporter(spanReporter);
+		if (clock != null)
+			builder.clock(clock);
+		if (sampler != null)
+			builder.sampler(sampler);
+		if (currentTraceContext != null)
+			builder.currentTraceContext(currentTraceContext);
+		if (propagationFactory != null)
+			builder.propagationFactory(propagationFactory);
+		if (traceId128Bit != null)
+			builder.traceId128Bit(traceId128Bit);
+		if (supportsJoin != null)
+			builder.supportsJoin(supportsJoin);
+		return builder.build();
+	}
 
-  @Override protected void destroyInstance(Object instance) throws Exception {
-    ((Tracing) instance).close();
-  }
+	@Override
+	protected void destroyInstance(Object instance) throws Exception {
+		((Tracing) instance).close();
+	}
 
-  @Override public Class<? extends Tracing> getObjectType() {
-    return Tracing.class;
-  }
+	@Override
+	public Class<? extends Tracing> getObjectType() {
+		return Tracing.class;
+	}
 
-  @Override public boolean isSingleton() {
-    return true;
-  }
+	@Override
+	public boolean isSingleton() {
+		return true;
+	}
 
-  public void setLocalServiceName(String localServiceName) {
-    this.localServiceName = localServiceName;
-  }
+	public void setLocalServiceName(String localServiceName) {
+		this.localServiceName = localServiceName;
+	}
 
-  public void setLocalEndpoint(Endpoint localEndpoint) {
-    this.localEndpoint = localEndpoint;
-  }
+	public void setLocalEndpoint(Endpoint localEndpoint) {
+		this.localEndpoint = localEndpoint;
+	}
 
-  public void setEndpoint(Endpoint endpoint) {
-    this.endpoint = endpoint;
-  }
+	public void setEndpoint(Endpoint endpoint) {
+		this.endpoint = endpoint;
+	}
 
-  public void setSpanReporter(Reporter<Span> spanReporter) {
-    this.spanReporter = spanReporter;
-  }
+	public void setSpanReporter(Reporter<Span> spanReporter) {
+		this.spanReporter = spanReporter;
+	}
 
-  public void setClock(Clock clock) {
-    this.clock = clock;
-  }
+	public void setClock(Clock clock) {
+		this.clock = clock;
+	}
 
-  public void setSampler(Sampler sampler) {
-    this.sampler = sampler;
-  }
+	public void setSampler(Sampler sampler) {
+		this.sampler = sampler;
+	}
 
-  public void setCurrentTraceContext(CurrentTraceContext currentTraceContext) {
-    this.currentTraceContext = currentTraceContext;
-  }
+	public void setCurrentTraceContext(CurrentTraceContext currentTraceContext) {
+		this.currentTraceContext = currentTraceContext;
+	}
 
-  public Propagation.Factory getPropagationFactory() {
-    return propagationFactory;
-  }
+	public Propagation.Factory getPropagationFactory() {
+		return propagationFactory;
+	}
 
-  public void setPropagationFactory(Propagation.Factory propagationFactory) {
-    this.propagationFactory = propagationFactory;
-  }
+	public void setPropagationFactory(Propagation.Factory propagationFactory) {
+		this.propagationFactory = propagationFactory;
+	}
 
-  public void setTraceId128Bit(boolean traceId128Bit) {
-    this.traceId128Bit = traceId128Bit;
-  }
+	public void setTraceId128Bit(boolean traceId128Bit) {
+		this.traceId128Bit = traceId128Bit;
+	}
 
-  public Boolean getSupportsJoin() {
-    return supportsJoin;
-  }
+	public Boolean getSupportsJoin() {
+		return supportsJoin;
+	}
 
-  public void setSupportsJoin(Boolean supportsJoin) {
-    this.supportsJoin = supportsJoin;
-  }
+	public void setSupportsJoin(Boolean supportsJoin) {
+		this.supportsJoin = supportsJoin;
+	}
 }
