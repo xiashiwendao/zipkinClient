@@ -1,11 +1,10 @@
 package brave.propagation;
 
+import brave.Span;
+import brave.Tracer;
+import brave.Tracer.SpanInScope;
+import brave.Tracing;
 import brave.internal.Nullable;
-import zipkinClient.Span;
-import zipkinClient.Tracer;
-import zipkinClient.Tracing;
-import zipkinClient.Tracer.SpanInScope;
-
 import com.google.auto.value.AutoValue;
 import java.util.ArrayDeque;
 import java.util.Deque;

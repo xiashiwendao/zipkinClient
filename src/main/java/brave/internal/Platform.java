@@ -1,19 +1,19 @@
 package brave.internal;
 
+import brave.Clock;
+import brave.Tracer;
+import brave.Tracing;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.security.SecureRandom;
 import java.util.Enumeration;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.jvnet.animal_sniffer.IgnoreJRERequirement;
 import zipkin2.Endpoint;
 import zipkin2.Span;
 import zipkin2.reporter.Reporter;
-import zipkinClient.Clock;
-import zipkinClient.Tracer;
-import zipkinClient.Tracing;
 
 /**
  * Access to platform-specific features and implements a default logging
@@ -166,7 +166,6 @@ public abstract class Platform {
 			return null;
 		}
 
-		@IgnoreJRERequirement
 		@Override
 		public Clock clock() {
 			return new Clock() {
@@ -174,7 +173,7 @@ public abstract class Platform {
 				// efficiently, but it is internal
 				@Override
 				public long currentTimeMicroseconds() {
-					return System.currentTimeMillis();
+					return TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis());
 				}
 
 				@Override
@@ -203,15 +202,15 @@ public abstract class Platform {
 			return null;
 		}
 
-		@IgnoreJRERequirement
 		@Override
 		public long randomLong() {
+			//return java.util.concurrent.ThreadLocalRandom.current().nextLong();
 			return System.currentTimeMillis();
 		}
 
-		@IgnoreJRERequirement
 		@Override
 		public long nextTraceIdHigh() {
+			//return nextTraceIdHigh(java.util.concurrent.ThreadLocalRandom.current().nextInt());
 			return System.currentTimeMillis();
 		}
 

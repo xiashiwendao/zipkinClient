@@ -1,8 +1,7 @@
 package brave.propagation;
 
+import brave.Tracer;
 import brave.internal.Nullable;
-import zipkinClient.Tracer;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

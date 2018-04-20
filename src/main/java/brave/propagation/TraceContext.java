@@ -48,7 +48,7 @@ public final class TraceContext extends SamplingFlags {
   /**
    * Used to join an incoming trace. For example, by reading http headers.
    *
-   * @see zipkinClient.Tracer#nextSpan(TraceContextOrSamplingFlags)
+   * @see brave.Tracer#nextSpan(TraceContextOrSamplingFlags)
    */
   public interface Extractor<C> {
 

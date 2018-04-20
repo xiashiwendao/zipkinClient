@@ -1,14 +1,14 @@
 package brave.internal.recorder;
 
+import brave.Clock;
+import brave.Span;
+import brave.Tracer;
 import brave.propagation.TraceContext;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import zipkin2.Endpoint;
 import zipkin2.reporter.Reporter;
-import zipkinClient.Clock;
-import zipkinClient.Span;
-import zipkinClient.Tracer;
 
 /** Dispatches mutations on a span to a shared object per trace/span id. */
 public final class Recorder {
@@ -44,21 +44,21 @@ public final class Recorder {
 		spanMap.getOrCreate(context).setShared();
 	}
 
-	/** @see zipkinClient.Span#start() */
+	/** @see brave.Span#start() */
 	public void start(TraceContext context) {
 		if (noop.get())
 			return;
 		spanMap.getOrCreate(context).start();
 	}
 
-	/** @see zipkinClient.Span#start(long) */
+	/** @see brave.Span#start(long) */
 	public void start(TraceContext context, long timestamp) {
 		if (noop.get())
 			return;
 		spanMap.getOrCreate(context).start(timestamp);
 	}
 
-	/** @see zipkinClient.Span#name(String) */
+	/** @see brave.Span#name(String) */
 	public void name(TraceContext context, String name) {
 		if (noop.get())
 			return;
@@ -67,7 +67,7 @@ public final class Recorder {
 		spanMap.getOrCreate(context).name(name);
 	}
 
-	/** @see zipkinClient.Span#kind(Span.Kind) */
+	/** @see brave.Span#kind(Span.Kind) */
 	public void kind(TraceContext context, Span.Kind kind) {
 		if (noop.get())
 			return;
@@ -76,7 +76,7 @@ public final class Recorder {
 		spanMap.getOrCreate(context).kind(kind);
 	}
 
-	/** @see zipkinClient.Span#annotate(String) */
+	/** @see brave.Span#annotate(String) */
 	public void annotate(TraceContext context, String value) {
 		if (noop.get())
 			return;
@@ -85,7 +85,7 @@ public final class Recorder {
 		spanMap.getOrCreate(context).annotate(value);
 	}
 
-	/** @see zipkinClient.Span#annotate(long, String) */
+	/** @see brave.Span#annotate(long, String) */
 	public void annotate(TraceContext context, long timestamp, String value) {
 		if (noop.get())
 			return;
@@ -94,7 +94,7 @@ public final class Recorder {
 		spanMap.getOrCreate(context).annotate(timestamp, value);
 	}
 
-	/** @see zipkinClient.Span#tag(String, String) */
+	/** @see brave.Span#tag(String, String) */
 	public void tag(TraceContext context, String key, String value) {
 		if (noop.get())
 			return;
@@ -107,7 +107,7 @@ public final class Recorder {
 		spanMap.getOrCreate(context).tag(key, value);
 	}
 
-	/** @see zipkinClient.Span#remoteEndpoint(Endpoint) */
+	/** @see brave.Span#remoteEndpoint(Endpoint) */
 	public void remoteEndpoint(TraceContext context, Endpoint remoteEndpoint) {
 		if (noop.get())
 			return;

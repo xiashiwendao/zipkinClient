@@ -1,5 +1,6 @@
 package brave.internal.recorder;
 
+import brave.Clock;
 import brave.internal.Nullable;
 import brave.propagation.TraceContext;
 import java.lang.ref.Reference;
@@ -12,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import zipkin2.Endpoint;
 import zipkin2.reporter.Reporter;
-import zipkinClient.Clock;
 
 /**
  * Similar to Finagle's deadline span map, except this is GC pressure as opposed to timeout driven.

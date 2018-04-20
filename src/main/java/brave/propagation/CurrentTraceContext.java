@@ -1,8 +1,7 @@
 package brave.propagation;
 
+import brave.Tracing;
 import brave.internal.Nullable;
-import zipkinClient.Tracing;
-
 import java.io.Closeable;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executor;
@@ -140,7 +139,7 @@ public abstract class CurrentTraceContext {
 		class CurrentTraceContextCallable implements Callable<C> {
 			@Override
 			public C call() throws Exception {
-				Scope scope = newScope(invocationContext);
+				Scope scope = null;
 				try {
 					scope = newScope(invocationContext);
 					return task.call();
@@ -160,7 +159,7 @@ public abstract class CurrentTraceContext {
 		class CurrentTraceContextRunnable implements Runnable {
 			@Override
 			public void run() {
-				Scope scope = newScope(invocationContext);
+				Scope scope = null;
 				try {
 					scope = newScope(invocationContext);
 					task.run();

@@ -1,10 +1,9 @@
 package brave.propagation;
 
+import brave.Tracing;
 import brave.internal.Nullable;
 import brave.propagation.TraceContext.Extractor;
 import brave.propagation.TraceContext.Injector;
-import zipkinClient.Tracing;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;

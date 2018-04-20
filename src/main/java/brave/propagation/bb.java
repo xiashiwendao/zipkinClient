@@ -1,8 +1,8 @@
 
 package brave.propagation;
 
-import zipkinClient.Span;
-import zipkinClient.Tracer;
+import brave.Span;
+import brave.Tracer;
 
 final class AutoValue_ThreadLocalSpan_SpanAndScope extends ThreadLocalSpan.SpanAndScope {
 

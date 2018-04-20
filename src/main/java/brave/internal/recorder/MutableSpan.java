@@ -1,11 +1,11 @@
 package brave.internal.recorder;
 
+import brave.Clock;
+import brave.Span;
 import brave.internal.HexCodec;
 import brave.internal.Nullable;
 import brave.propagation.TraceContext;
 import zipkin2.Endpoint;
-import zipkinClient.Clock;
-import zipkinClient.Span;
 
 final class MutableSpan {
   final Clock clock;
