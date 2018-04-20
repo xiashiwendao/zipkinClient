@@ -56,7 +56,6 @@
 			<artifactId>zipkin-sender-urlconnection</artifactId>
 			<version>2.4.1</version>
 		</dependency>
-		<artifactId>brave-context-log4j12</artifactId>
 		<!-- zipkin reporter END -->
 
 		<dependency>
